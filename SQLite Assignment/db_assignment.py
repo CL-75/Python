@@ -20,9 +20,8 @@ fileList = ('information.docx', 'Hello.txt', 'myImage.png', \
             'myMovie.mpg', 'World.txt', 'data.pdf', 'myPhoto.jpg')
 
 
-"""
+
 # connecting to DB and creating table with column
-"""
 with conn:
     db = conn.cursor()
     db.execute("CREATE TABLE IF NOT EXISTS tbl_files( \
@@ -30,17 +29,15 @@ with conn:
         col_files TEXT \
         )")
 
-"""
+
 # Specifying which file extension to add to DB, in this case it is .txt
-"""
     for myFiles in fileList:
         if myFiles.endswith(".txt"):
             print(myFiles)
             db.execute("INSERT INTO tbl_files(col_files) VALUES (?)", (myFiles,))
             
-"""
+
 # Printing the selected files 
-"""
     with conn:
         db = conn.cursor()
         db.execute("SELECT col_files FROM tbl_files")
